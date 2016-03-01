@@ -13,12 +13,15 @@ class PlaySoundViewController: UIViewController {
    
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
     
+    @IBOutlet weak var stopButton: UIButton!
+    
     //var player:AVPlayer = AVPlayer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        stopButton.hidden = true
         let soundURL: NSURL
         
         if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
@@ -58,8 +61,8 @@ class PlaySoundViewController: UIViewController {
         print("play slow pressed")
         
         // 1. Play a downloaded file from the project.
-        
-        
+        stopButton.hidden = false
+        audioPlayer.stop()
         audioPlayer.enableRate = true
         audioPlayer.rate = 0.5
         audioPlayer.volume = 1.0
@@ -97,5 +100,20 @@ class PlaySoundViewController: UIViewController {
         player.rate = 1.0
         player.play()
         */
+    }
+    
+    @IBAction func playFast(sender: UIButton) {
+        
+        stopButton.hidden = false
+        audioPlayer.stop()
+        audioPlayer.enableRate = true
+        audioPlayer.rate = 1.5
+        audioPlayer.volume = 1.0
+        audioPlayer.play()
+    }
+    
+    @IBAction func stopPlayingSound(sender: UIButton) {
+        audioPlayer.stop()
+        stopButton.hidden = true
     }
 }
