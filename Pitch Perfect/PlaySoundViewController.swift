@@ -19,6 +19,22 @@ class PlaySoundViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        let soundURL: NSURL
+        
+        if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
+            soundURL = NSURL(fileURLWithPath: sound)
+            
+            do {
+                audioPlayer = try AVAudioPlayer(contentsOfURL: soundURL)
+                audioPlayer.prepareToPlay()
+                
+            } catch {
+                print("error fetching the file")
+            }
+            
+        } else {
+            print("the file is not found")
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,24 +58,12 @@ class PlaySoundViewController: UIViewController {
         print("play slow pressed")
         
         // 1. Play a downloaded file from the project.
-        let soundURL: NSURL
         
-        if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-            soundURL = NSURL(fileURLWithPath: sound)
-          
-            do {
-                audioPlayer = try AVAudioPlayer(contentsOfURL: soundURL)
-                audioPlayer.prepareToPlay()
-                audioPlayer.rate = 0.5
-                audioPlayer.volume = 1.0
-                audioPlayer.play()
-            } catch {
-                print("error fetching the file")
-            }
-
-        } else {
-            print("the file is not found")
-        }
+        
+        audioPlayer.enableRate = true
+        audioPlayer.rate = 0.5
+        audioPlayer.volume = 1.0
+        audioPlayer.play()
 
         /*
         // 2. Locally store the contents of the url into a variable and
