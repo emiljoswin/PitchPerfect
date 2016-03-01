@@ -9,7 +9,7 @@
         <!--Record-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordSoundsViewController" customModule="Pitch_Perfect" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -59,12 +59,12 @@
                                 <exclude reference="7hi-wZ-N9M"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="9sU-lx-u9h"/>
-                                <exclude reference="Ld2-zX-hqc"/>
+                                <exclude reference="Oql-8w-cEm"/>
+                                <exclude reference="Vv8-eH-SMy"/>
                                 <exclude reference="ZIX-E6-iOK"/>
                                 <exclude reference="trv-4k-kB7"/>
-                                <exclude reference="Vv8-eH-SMy"/>
-                                <exclude reference="Oql-8w-cEm"/>
+                                <exclude reference="9sU-lx-u9h"/>
+                                <exclude reference="Ld2-zX-hqc"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -74,12 +74,12 @@
                                 <include reference="7hi-wZ-N9M"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="9sU-lx-u9h"/>
-                                <include reference="Ld2-zX-hqc"/>
+                                <include reference="Oql-8w-cEm"/>
+                                <include reference="Vv8-eH-SMy"/>
                                 <include reference="ZIX-E6-iOK"/>
                                 <include reference="trv-4k-kB7"/>
-                                <include reference="Vv8-eH-SMy"/>
-                                <include reference="Oql-8w-cEm"/>
+                                <include reference="9sU-lx-u9h"/>
+                                <include reference="Ld2-zX-hqc"/>
                             </mask>
                         </variation>
                     </view>
@@ -152,12 +152,12 @@
                                 <exclude reference="OC3-Xa-WLS"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="RkT-7s-04C"/>
-                                <exclude reference="SeA-18-dj9"/>
+                                <exclude reference="WRg-0k-V5J"/>
                                 <exclude reference="jjN-rC-App"/>
                                 <exclude reference="rM2-Id-xZh"/>
+                                <exclude reference="RkT-7s-04C"/>
+                                <exclude reference="SeA-18-dj9"/>
                                 <exclude reference="PFn-XV-VdX"/>
-                                <exclude reference="WRg-0k-V5J"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -167,12 +167,12 @@
                                 <include reference="OC3-Xa-WLS"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="RkT-7s-04C"/>
-                                <include reference="SeA-18-dj9"/>
+                                <include reference="WRg-0k-V5J"/>
                                 <include reference="jjN-rC-App"/>
                                 <include reference="rM2-Id-xZh"/>
+                                <include reference="RkT-7s-04C"/>
+                                <include reference="SeA-18-dj9"/>
                                 <include reference="PFn-XV-VdX"/>
-                                <include reference="WRg-0k-V5J"/>
                             </mask>
                         </variation>
                     </view>
