@@ -15,6 +15,7 @@
 		206797E01C7A974D00DFB54D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 206797DE1C7A974D00DFB54D /* LaunchScreen.storyboard */; };
 		206797EB1C7A974E00DFB54D /* Pitch_PerfectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206797EA1C7A974E00DFB54D /* Pitch_PerfectTests.swift */; };
 		206797F61C7A974E00DFB54D /* Pitch_PerfectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206797F51C7A974E00DFB54D /* Pitch_PerfectUITests.swift */; };
+		20C342761C8A984400F9529A /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20C342751C8A984300F9529A /* RecordedAudio.swift */; };
 		20F648821C8042070035B7BF /* PlaySoundViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 20F648811C8042070035B7BF /* PlaySoundViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		206797F11C7A974E00DFB54D /* Pitch PerfectUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pitch PerfectUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		206797F51C7A974E00DFB54D /* Pitch_PerfectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pitch_PerfectUITests.swift; sourceTree = "<group>"; };
 		206797F71C7A974E00DFB54D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		20C342751C8A984300F9529A /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		20F648811C8042070035B7BF /* PlaySoundViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaySoundViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		206797C91C7A974D00DFB54D = {
 			isa = PBXGroup;
 			children = (
+				20C342751C8A984300F9529A /* RecordedAudio.swift */,
 				206797D41C7A974D00DFB54D /* Pitch Perfect */,
 				206797E91C7A974E00DFB54D /* Pitch PerfectTests */,
 				206797F41C7A974E00DFB54D /* Pitch PerfectUITests */,
@@ -271,6 +274,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				20C342761C8A984400F9529A /* RecordedAudio.swift in Sources */,
 				206797D81C7A974D00DFB54D /* RecordSoundsViewController.swift in Sources */,
 				20F648821C8042070035B7BF /* PlaySoundViewController.swift in Sources */,
 				206797D61C7A974D00DFB54D /* AppDelegate.swift in Sources */,

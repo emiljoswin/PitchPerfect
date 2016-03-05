@@ -12,6 +12,7 @@ import AVFoundation
 class PlaySoundViewController: UIViewController {
    
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
+    var receiveAudio: RecordedAudio!
     
     @IBOutlet weak var stopButton: UIButton!
     
@@ -26,9 +27,11 @@ class PlaySoundViewController: UIViewController {
         
         if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
             soundURL = NSURL(fileURLWithPath: sound)
-            
+            print("received file", receiveAudio.filePathUrl)
             do {
-                audioPlayer = try AVAudioPlayer(contentsOfURL: soundURL)
+                // audioPlayer = try AVAudioPlayer(contentsOfURL: soundURL)
+                // play the data received due to segue
+                audioPlayer = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)
                 audioPlayer.prepareToPlay()
                 
             } catch {
