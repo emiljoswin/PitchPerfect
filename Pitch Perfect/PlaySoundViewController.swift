@@ -30,6 +30,7 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
         let soundURL: NSURL
         
         if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
+            
             soundURL = NSURL(fileURLWithPath: sound)
             print("received file", receiveAudio.filePathUrl)
             do {
@@ -133,10 +134,9 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
         
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
         audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
-//        audioPlayer.play()
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         try! audioEngine.start()
-        audioPlayer.play()
+        audioPlayerNode.play()
         
     }
     
