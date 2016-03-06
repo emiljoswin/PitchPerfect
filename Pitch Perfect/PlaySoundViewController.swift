@@ -9,10 +9,13 @@
 import UIKit
 import AVFoundation
 
-class PlaySoundViewController: UIViewController {
+class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
    
     var audioPlayer:AVAudioPlayer = AVAudioPlayer()
     var receiveAudio: RecordedAudio!
+    
+    var audioEngine: AVAudioEngine!
+    var audioFile: AVAudioFile!
     
     @IBOutlet weak var stopButton: UIButton!
     
@@ -20,7 +23,8 @@ class PlaySoundViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        audioEngine = AVAudioEngine()
+        
         // Do any additional setup after loading the view.
         stopButton.hidden = true
         let soundURL: NSURL
@@ -33,7 +37,8 @@ class PlaySoundViewController: UIViewController {
                 // play the data received due to segue
                 audioPlayer = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)
                 audioPlayer.prepareToPlay()
-                
+                audioPlayer.delegate = self
+                audioFile = try! AVAudioFile(forReading: receiveAudio.filePathUrl)
             } catch {
                 print("error fetching the file")
             }
@@ -61,9 +66,7 @@ class PlaySoundViewController: UIViewController {
     */
 
     @IBAction func playSlowAction(sender: UIButton) {
-        print("play slow pressed")
-        
-        // 1. Play a downloaded file from the project.
+       
         stopButton.hidden = false
         audioPlayer.stop()
         audioPlayer.enableRate = true
@@ -115,8 +118,39 @@ class PlaySoundViewController: UIViewController {
         audioPlayer.play()
     }
     
+    @IBAction func playChipmunkAudio(sender: AnyObject) {
+        audioPlayer.stop()
+        audioEngine.stop()
+        audioEngine.reset()
+        stopButton.hidden = false
+        
+        let audioPlayerNode = AVAudioPlayerNode()
+        audioEngine.attachNode(audioPlayerNode)
+        
+        let changePitchEffect = AVAudioUnitTimePitch()
+        changePitchEffect.pitch = 1000
+        audioEngine.attachNode(changePitchEffect)
+        
+        audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
+        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+//        audioPlayer.play()
+        audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
+        try! audioEngine.start()
+        audioPlayer.play()
+        
+    }
+    
     @IBAction func stopPlayingSound(sender: UIButton) {
         audioPlayer.stop()
         stopButton.hidden = true
+    }
+    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        if (flag) {
+            print("successfully finished playing")
+            stopButton.hidden = true
+        } else {
+            print("Didn not finish plaing")
+        }
     }
 }

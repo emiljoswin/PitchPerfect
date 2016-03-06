@@ -127,9 +127,17 @@
                                     <action selector="playFast:" destination="lxH-YG-xD0" eventType="touchUpInside" id="IQi-b3-dyf"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="czF-kc-l69">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="chipmunk"/>
+                                <connections>
+                                    <action selector="playChipmunkAudio:" destination="lxH-YG-xD0" eventType="touchUpInside" id="Yck-w4-DQq"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="czF-kc-l69" firstAttribute="top" secondItem="b18-Q4-Ba5" secondAttribute="bottom" constant="30" id="G90-e0-l9Y"/>
                             <constraint firstItem="gu3-6W-MOc" firstAttribute="centerX" secondItem="cbE-pu-ID9" secondAttribute="centerX" id="PFn-XV-VdX"/>
                             <constraint firstItem="b18-Q4-Ba5" firstAttribute="leading" secondItem="cbE-pu-ID9" secondAttribute="leadingMargin" constant="13" id="RkT-7s-04C">
                                 <variation key="widthClass=compact" constant="33"/>
@@ -144,20 +152,24 @@
                             <constraint firstAttribute="trailingMargin" secondItem="OC3-Xa-WLS" secondAttribute="trailing" constant="64" id="rM2-Id-xZh">
                                 <variation key="widthClass=compact" constant="33"/>
                             </constraint>
+                            <constraint firstItem="czF-kc-l69" firstAttribute="leading" secondItem="cbE-pu-ID9" secondAttribute="leadingMargin" constant="33" id="vrz-Ph-eRT"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="b18-Q4-Ba5"/>
                                 <exclude reference="gu3-6W-MOc"/>
                                 <exclude reference="OC3-Xa-WLS"/>
+                                <exclude reference="czF-kc-l69"/>
                             </mask>
                             <mask key="constraints">
-                                <exclude reference="WRg-0k-V5J"/>
-                                <exclude reference="jjN-rC-App"/>
-                                <exclude reference="rM2-Id-xZh"/>
                                 <exclude reference="RkT-7s-04C"/>
                                 <exclude reference="SeA-18-dj9"/>
+                                <exclude reference="G90-e0-l9Y"/>
+                                <exclude reference="vrz-Ph-eRT"/>
+                                <exclude reference="jjN-rC-App"/>
+                                <exclude reference="rM2-Id-xZh"/>
                                 <exclude reference="PFn-XV-VdX"/>
+                                <exclude reference="WRg-0k-V5J"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
@@ -165,14 +177,17 @@
                                 <include reference="b18-Q4-Ba5"/>
                                 <include reference="gu3-6W-MOc"/>
                                 <include reference="OC3-Xa-WLS"/>
+                                <include reference="czF-kc-l69"/>
                             </mask>
                             <mask key="constraints">
-                                <include reference="WRg-0k-V5J"/>
-                                <include reference="jjN-rC-App"/>
-                                <include reference="rM2-Id-xZh"/>
                                 <include reference="RkT-7s-04C"/>
                                 <include reference="SeA-18-dj9"/>
+                                <include reference="G90-e0-l9Y"/>
+                                <include reference="vrz-Ph-eRT"/>
+                                <include reference="jjN-rC-App"/>
+                                <include reference="rM2-Id-xZh"/>
                                 <include reference="PFn-XV-VdX"/>
+                                <include reference="WRg-0k-V5J"/>
                             </mask>
                         </variation>
                     </view>
@@ -182,7 +197,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tPN-St-FFW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1917" y="268"/>
+            <point key="canvasLocation" x="1887" y="268"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Bg1-Mh-OnJ">
@@ -204,6 +219,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="chipmunk" width="100" height="100"/>
         <image name="microphone" width="100" height="100"/>
         <image name="rabitfast" width="100" height="100"/>
         <image name="snailslow" width="100" height="100"/>
