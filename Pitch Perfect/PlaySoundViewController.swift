@@ -19,33 +19,20 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
     
     @IBOutlet weak var stopButton: UIButton!
     
-    //var player:AVPlayer = AVPlayer()
-    
     override func viewDidLoad() {
+        // Do any additional setup after loading the view.
+
         super.viewDidLoad()
         audioEngine = AVAudioEngine()
-        
-        // Do any additional setup after loading the view.
         stopButton.hidden = true
-        let soundURL: NSURL
         
-        if let sound = NSBundle.mainBundle().pathForResource("movie_quote", ofType: "mp3") {
-            
-            soundURL = NSURL(fileURLWithPath: sound)
-            print("received file", receiveAudio.filePathUrl)
-            do {
-                // audioPlayer = try AVAudioPlayer(contentsOfURL: soundURL)
-                // play the data received due to segue
-                audioPlayer = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)
-                audioPlayer.prepareToPlay()
-                audioPlayer.delegate = self
-                audioFile = try! AVAudioFile(forReading: receiveAudio.filePathUrl)
-            } catch {
-                print("error fetching the file")
-            }
-            
-        } else {
-            print("the file is not found")
+        do {
+            audioPlayer = try AVAudioPlayer(contentsOfURL: receiveAudio.filePathUrl)
+            audioPlayer.prepareToPlay()
+            audioPlayer.delegate = self
+            audioFile = try! AVAudioFile(forReading: receiveAudio.filePathUrl)
+        } catch {
+            print("error fetching the file")
         }
     }
 
@@ -67,13 +54,8 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
     */
 
     @IBAction func playSlowAction(sender: UIButton) {
-       
-        stopButton.hidden = false
-        audioPlayer.stop()
-        audioPlayer.enableRate = true
-        audioPlayer.rate = 0.5
-        audioPlayer.volume = 1.0
-        audioPlayer.play()
+        
+        playTheAudio(rate: 0.5)
 
         /*
         // 2. Locally store the contents of the url into a variable and
@@ -81,7 +63,7 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
         do {
             let url = "https://s3.amazonaws.com/udacity-hosted-downloads/ud585/audio/movie_quote.mp3"
             let fileURL = NSURL(string: url)
-            
+        
             let soundData = NSData(contentsOfURL: fileURL!)
             audioPlayer = try AVAudioPlayer(data: soundData!)
             if (audioPlayer.prepareToPlay()) {
@@ -110,18 +92,28 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
     }
     
     @IBAction func playFast(sender: UIButton) {
-        
+        playTheAudio(rate: 1.5)
+    }
+    
+    
+    func playTheAudio(rate r: Float) {
         stopButton.hidden = false
         audioPlayer.stop()
         audioPlayer.enableRate = true
-        audioPlayer.rate = 1.5
+        audioPlayer.rate = r
         audioPlayer.volume = 1.0
         audioPlayer.play()
     }
     
     @IBAction func playChipmunkAudio(sender: AnyObject) {
-        audioPlayer.stop()
-        audioEngine.stop()
+        playWithEngine(pitch: 1000, rate: 1.0)
+    }
+    
+    @IBAction func playDarthvaderAudio(sender: UIButton) {
+        playWithEngine(pitch: -1000, rate: 1.0)
+    }
+    
+    func playWithEngine(pitch p: Float, rate: Float) {
         audioEngine.reset()
         stopButton.hidden = false
         
@@ -129,16 +121,23 @@ class PlaySoundViewController: UIViewController, AVAudioPlayerDelegate {
         audioEngine.attachNode(audioPlayerNode)
         
         let changePitchEffect = AVAudioUnitTimePitch()
-        changePitchEffect.pitch = 1000
+        changePitchEffect.pitch = p
         audioEngine.attachNode(changePitchEffect)
         
+        let playbackRateEffect = AVAudioUnitVarispeed()
+        playbackRateEffect.rate = rate
+        audioEngine.attachNode(playbackRateEffect)
+        
+        
         audioEngine.connect(audioPlayerNode, to: changePitchEffect, format: nil)
-        audioEngine.connect(changePitchEffect, to: audioEngine.outputNode, format: nil)
+        audioEngine.connect(changePitchEffect, to: playbackRateEffect, format: nil)
+        audioEngine.connect(playbackRateEffect, to: audioEngine.outputNode, format: nil)
         audioPlayerNode.scheduleFile(audioFile, atTime: nil, completionHandler: nil)
         try! audioEngine.start()
         audioPlayerNode.play()
-        
+
     }
+    
     
     @IBAction func stopPlayingSound(sender: UIButton) {
         audioPlayer.stop()
